@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>零探しチェッカー</title>
     <style>
+      html, body {
+        touch-action: manipulation;
+      }
       body {
         font-family: Arial, sans-serif;
         max-width: 400px;
@@ -12,8 +15,7 @@
         padding: 10px;
         box-sizing: border-box;
       }
-      h1,
-      h2 {
+      h1, h2 {
         text-align: center;
         margin: 10px 0;
       }
@@ -44,6 +46,7 @@
         font-size: 14px;
         margin: 2px;
         cursor: pointer;
+        touch-action: manipulation;
       }
       .mulligan-buttons {
         display: flex;
@@ -55,8 +58,7 @@
         margin: 2px;
         padding: 5px 0;
       }
-      #result,
-      #mulliganResult {
+      #result, #mulliganResult {
         margin-top: 10px;
         font-weight: bold;
       }
@@ -78,9 +80,10 @@
       <input type="number" id="deckSize" min="1" value="40" />
       <button onclick="setDeckSize(40)">40</button>
       <button onclick="setDeckSize(50)">50</button>
+      <button onclick="setDeckSize(60)">60</button>
     </div>
     <div class="input-group">
-      <label for="zeroCount">零コスト：</label>
+      <label for="zeroCount">零コストの数：</label>
       <input type="number" id="zeroCount" min="0" value="7" />
       <button onclick="setZeroCount(4)">4</button>
       <button onclick="setZeroCount(5)">5</button>
@@ -173,7 +176,7 @@
         const probability = calculateProbability(deckSize, zeroCount, 8);
         document.getElementById(
           'result'
-        ).innerHTML = `零コストのカードが${drawnZero}枚引けました。<br>零コストが1枚以上引ける確率は${(
+        ).innerHTML = `零コストのカードが&nbsp;${drawnZero}枚&nbsp;引けました。<br>零コストが1枚以上引ける確率は${(
           probability * 100
         ).toFixed(2)}%です。`;
       }
@@ -209,7 +212,7 @@
 
         document.getElementById(
           'mulliganResult'
-        ).innerHTML = `新たに零コストのカードが${drawnZero}枚引けました。<br>零コストが1枚以上引ける確率は${(
+        ).innerHTML = `新たに零コストのカードが&nbsp;${drawnZero}枚&nbsp;引けました。<br>零コストが1枚以上引ける確率は${(
           probability * 100
         ).toFixed(2)}%です。`;
       }
@@ -218,5 +221,6 @@
         document.getElementById('zeroCount').focus();
       });
     </script>
-  </body>
+  </head>
+</body>
 </html>
