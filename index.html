@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>事故率チェッカー</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      h1,
+      h2 {
+        text-align: center;
+        margin: 10px 0;
+      }
+      .input-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+      }
+      label {
+        flex: 0 0 110px;
+        white-space: nowrap;
+      }
+      input[type='number'] {
+        width: 50px;
+        padding: 5px;
+        font-size: 14px;
+      }
+      button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 2px;
+        cursor: pointer;
+      }
+      .mulligan-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .mulligan-buttons button {
+        flex: 0 0 calc(14% - 4px);
+        margin-bottom: 5px;
+      }
+      #result,
+      #mulliganResult {
+        margin-top: 10px;
+        font-weight: bold;
+      }
+      .explanation {
+        margin-bottom: 5px;
+        font-style: italic;
+        font-size: 14px;
+      }
+      .divider {
+        border-top: 2px solid #4caf50;
+        margin: 20px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>事故率チェッカー</h1>
+    <div class="input-group">
+      <label for="deckSize">デッキ枚数：</label>
+      <input type="number" id="deckSize" min="1" value="40" />
+      <button onclick="setDeckSize(40)">40</button>
+      <button onclick="setDeckSize(50)">50</button>
+    </div>
+    <div class="input-group">
+      <label for="zeroCount">零コスト枚数：</label>
+      <input type="number" id="zeroCount" min="0" value="7" />
+      <button onclick="setZeroCount(4)">4</button>
+      <button onclick="setZeroCount(5)">5</button>
+      <button onclick="setZeroCount(6)">6</button>
+      <button onclick="setZeroCount(7)">7</button>
+      <button onclick="setZeroCount(8)">8</button>
+    </div>
+    <button onclick="handleDraw()" style="width: 100%">ドロー開始</button>
+    <div id="result"></div>
+
+    <div class="divider"></div>
+
+    <div class="mulligan-header">
+      <h2>マリガン</h2>
+    </div>
+    <div class="input-group">
+      <label for="keptZeroCount">抱えている零コスト：</label>
+      <input type="number" id="keptZeroCount" min="0" value="0" />
+      <button onclick="setKeptZeroCount(0)">0</button>
+      <button onclick="setKeptZeroCount(1)">1</button>
+      <button onclick="setKeptZeroCount(2)">2</button>
+    </div>
+    <p class="explanation"><i>手札のキープ枚数を選んでください。</i></p>
+    <div class="mulligan-buttons">
+      <button onclick="handleMulligan(1)">1</button>
+      <button onclick="handleMulligan(2)">2</button>
+      <button onclick="handleMulligan(3)">3</button>
+      <button onclick="handleMulligan(4)">4</button>
+      <button onclick="handleMulligan(5)">5</button>
+      <button onclick="handleMulligan(6)">6</button>
+      <button onclick="handleMulligan(7)">7</button>
+    </div>
+    <div id="mulliganResult"></div>
+
+    <script>
+      function setDeckSize(size) {
+        document.getElementById('deckSize').value = size;
+        document.getElementById('zeroCount').focus();
+      }
+
+      function setZeroCount(count) {
+        document.getElementById('zeroCount').value = count;
+      }
+
+      function setKeptZeroCount(count) {
+        document.getElementById('keptZeroCount').value = count;
+      }
+
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+      }
+
+      function createDeck(deckSize, zeroCount) {
+        const deck = new Array(deckSize).fill(0);
+        for (let i = 0; i < zeroCount; i++) {
+          deck[i] = 1;
+        }
+        shuffleArray(deck);
+        return deck;
+      }
+
+      function drawCards(deck, count) {
+        return deck.slice(0, count);
+      }
+
+      function calculateProbability(deckSize, zeroCount, drawCount) {
+        if (deckSize < zeroCount || deckSize < drawCount || zeroCount < 0 || drawCount < 0) return 0;
+        let probability = 1;
+        for (let i = 0; i < drawCount; i++) {
+          probability *= (deckSize - zeroCount - i) / (deckSize - i);
+        }
+        return 1 - probability;
+      }
+
+      function handleDraw() {
+        const deckSize = parseInt(document.getElementById('deckSize').value);
+        const zeroCount = parseInt(document.getElementById('zeroCount').value);
+        if (isNaN(deckSize) || isNaN(zeroCount) || deckSize <= 0 || zeroCount < 0 || zeroCount > deckSize) {
+          document.getElementById('result').textContent = '無効な入力です。';
+          return;
+        }
+        const deck = createDeck(deckSize, zeroCount);
+        const drawnCards = drawCards(deck, 8);
+        const drawnZero = drawnCards.filter((card) => card === 1).length;
+        const probability = calculateProbability(deckSize, zeroCount, 8);
+        document.getElementById(
+          'result'
+        ).innerHTML = `零コストのカードが${drawnZero}枚引けました。<br>零コストが1枚以上引ける確率は${(
+          probability * 100
+        ).toFixed(2)}%です。`;
+      }
+
+      function handleMulligan(keep) {
+        const deckSize = parseInt(document.getElementById('deckSize').value);
+        const zeroCount = parseInt(document.getElementById('zeroCount').value);
+        const keptZeroCount = parseInt(document.getElementById('keptZeroCount').value);
+        if (
+          isNaN(deckSize) ||
+          isNaN(zeroCount) ||
+          isNaN(keptZeroCount) ||
+          deckSize <= 0 ||
+          zeroCount < 0 ||
+          zeroCount > deckSize ||
+          keptZeroCount < 0 ||
+          keptZeroCount > Math.min(keep, zeroCount)
+        ) {
+          document.getElementById('mulliganResult').textContent = '無効な入力です。';
+          return;
+        }
+
+        const remainingDeckSize = deckSize - keep;
+        const remainingZeroCount = zeroCount - keptZeroCount;
+        const drawCount = 8 - keep;
+
+        const probability = calculateProbability(remainingDeckSize, remainingZeroCount, drawCount);
+
+        // シミュレーションによるドロー
+        const deck = createDeck(remainingDeckSize, remainingZeroCount);
+        const drawnCards = drawCards(deck, drawCount);
+        const drawnZero = drawnCards.filter((card) => card === 1).length;
+
+        document.getElementById(
+          'mulliganResult'
+        ).innerHTML = `新たに零コストのカードが${drawnZero}枚引けました。<br>零コストが1枚以上引ける確率は${(
+          probability * 100
+        ).toFixed(2)}%でした。`;
+      }
+
+      document.getElementById('deckSize').addEventListener('blur', function () {
+        document.getElementById('zeroCount').focus();
+      });
+    </script>
+  </body>
+</html>
