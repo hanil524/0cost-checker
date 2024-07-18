@@ -31,7 +31,7 @@
       }
       input[type='number'] {
         width: 50px;
-        padding: 5px;
+        padding: 4px;
         font-size: 14px;
         margin-right: 10px;
       }
@@ -83,15 +83,15 @@
       <button onclick="setDeckSize(60)">60</button>
     </div>
     <div class="input-group">
-      <label for="zeroCount">零コストの数：</label>
-      <input type="number" id="zeroCount" min="0" value="7" />
+      <label for="zeroCount">零コスの数：</label>
+      <input type="number" id="zeroCount" min="0" value="6" />
       <button onclick="setZeroCount(4)">4</button>
       <button onclick="setZeroCount(5)">5</button>
       <button onclick="setZeroCount(6)">6</button>
       <button onclick="setZeroCount(7)">7</button>
       <button onclick="setZeroCount(8)">8</button>
     </div>
-    <button onclick="handleDraw()" style="width: 100%">ドロー開始</button>
+    <button onclick="handleDraw()" style="width: 100%">8枚ドロー開始</button>
     <div id="result"></div>
 
     <div class="divider"></div>
@@ -100,11 +100,12 @@
       <h2>マリガン</h2>
     </div>
     <div class="input-group">
-      <label for="keptZeroCount">抱えている零コスト：</label>
+      <label for="keptZeroCount">抱えている零コス：</label>
       <input type="number" id="keptZeroCount" min="0" value="0" />
       <button onclick="setKeptZeroCount(0)">0</button>
       <button onclick="setKeptZeroCount(1)">1</button>
       <button onclick="setKeptZeroCount(2)">2</button>
+      <button onclick="setKeptZeroCount(3)">3</button>
     </div>
     <p class="explanation"><i>手札のキープ枚数を選んでください。</i></p>
     <div class="mulligan-buttons">
