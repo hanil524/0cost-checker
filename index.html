@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>零探しチェッカー</title>
+    <title>零さがしチェッカー</title>
     <style>
-      html, body {
+      html,
+      body {
         touch-action: manipulation;
       }
       body {
@@ -15,7 +16,8 @@
         padding: 10px;
         box-sizing: border-box;
       }
-      h1, h2 {
+      h1,
+      h2 {
         text-align: center;
         margin: 10px 0;
       }
@@ -58,7 +60,8 @@
         margin: 2px;
         padding: 5px 0;
       }
-      #result, #mulliganResult {
+      #result,
+      #mulliganResult {
         margin-top: 10px;
         font-weight: bold;
       }
@@ -71,10 +74,38 @@
         border-top: 2px solid #4caf50;
         margin: 20px 0;
       }
+      .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        text-align: center;
+        padding: 10px 0;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        font-size: 14px;
+      }
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        text-align: center;
+        padding: 10px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        font-size: 20px;
+        font-weight: bold;
+        z-index: 1000;
+      }
+      body {
+        padding-top: 70px; /* 固定ヘッダーの分だけ余白を作る */
+      }
     </style>
   </head>
   <body>
-    <h1>零探しチェッカー</h1>
+    <div class="header">零探しチェッカー</div>
+
     <div class="input-group">
       <label for="deckSize">デッキ枚数：</label>
       <input type="number" id="deckSize" min="1" value="40" />
@@ -91,7 +122,7 @@
       <button onclick="setZeroCount(7)">7</button>
       <button onclick="setZeroCount(8)">8</button>
     </div>
-    <button onclick="handleDraw()" style="width: 100%">8枚ドロー開始（連打可能）</button>
+    <button onclick="handleDraw()" style="width: 100%">8枚ドロー開始</button>
     <div id="result"></div>
 
     <div class="divider"></div>
@@ -175,27 +206,14 @@
         const drawnCards = drawCards(deck, 8);
         const drawnZero = drawnCards.filter((card) => card === 1).length;
         const probability = calculateProbability(deckSize, zeroCount, 8);
-        document.getElementById(
-          'result'
-        ).innerHTML = `零コストのカードが&nbsp;${drawnZero}枚&nbsp;引けました。<br>零コストが1枚以上引ける確率は${(
-          probability * 100
-        ).toFixed(2)}%です。`;
+        document.getElementById('result').innerHTML = `零コストのカードが&nbsp;${drawnZero}枚&nbsp;引けました。<br>零コストが1枚以上引ける確率は${(probability * 100).toFixed(2)}%です。`;
       }
 
       function handleMulligan(keep) {
         const deckSize = parseInt(document.getElementById('deckSize').value);
         const zeroCount = parseInt(document.getElementById('zeroCount').value);
         const keptZeroCount = parseInt(document.getElementById('keptZeroCount').value);
-        if (
-          isNaN(deckSize) ||
-          isNaN(zeroCount) ||
-          isNaN(keptZeroCount) ||
-          deckSize <= 0 ||
-          zeroCount < 0 ||
-          zeroCount > deckSize ||
-          keptZeroCount < 0 ||
-          keptZeroCount > Math.min(keep, zeroCount)
-        ) {
+        if (isNaN(deckSize) || isNaN(zeroCount) || isNaN(keptZeroCount) || deckSize <= 0 || zeroCount < 0 || zeroCount > deckSize || keptZeroCount < 0 || keptZeroCount > Math.min(keep, zeroCount)) {
           document.getElementById('mulliganResult').textContent = '無効な入力です。';
           return;
         }
@@ -211,17 +229,13 @@
         const drawnCards = drawCards(deck, drawCount);
         const drawnZero = drawnCards.filter((card) => card === 1).length;
 
-        document.getElementById(
-          'mulliganResult'
-        ).innerHTML = `新たに零コストのカードが&nbsp;${drawnZero}枚&nbsp;引けました。<br>零コストが1枚以上引ける確率は${(
-          probability * 100
-        ).toFixed(2)}%です。`;
+        document.getElementById('mulliganResult').innerHTML = `新たに零コストのカードが&nbsp;${drawnZero}枚&nbsp;引けました。<br>零コストが1枚以上引ける確率は${(probability * 100).toFixed(2)}%です。`;
       }
 
       document.getElementById('deckSize').addEventListener('blur', function () {
         document.getElementById('zeroCount').focus();
       });
     </script>
-  </head>
-</body>
+    <div class="footer">ご連絡は X( <a href="https://x.com/hanil524" target="_blank">@hanil524</a> )まで</div>
+  </body>
 </html>
