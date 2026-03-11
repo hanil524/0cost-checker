@@ -240,7 +240,7 @@
       const drawnZero = drawnCards.filter((card) => card === 1).length;
       const probability = calculateProbability(deckSize, zeroCount, 8);
       const el = document.getElementById('result');
-      el.innerHTML = `0コストのカードが&nbsp;<strong>${drawnZero}枚</strong>&nbsp;引けました。<br>0コストが1枚以上引ける確率は<span class="probability">${(probability * 100).toFixed(2)}%</span>です。`;
+      el.innerHTML = `0コストのカードが&nbsp;<span class="probability"><strong>${drawnZero}枚</strong></span>&nbsp;引けました。<br>0コストが1枚以上引ける確率は<span class="probability">${(probability * 100).toFixed(2)}%</span>です。`;
       el.classList.add('visible');
     }
 
@@ -266,7 +266,7 @@
       const drawnZero = drawnCards.filter((card) => card === 1).length;
 
       const el = document.getElementById('mulliganResult');
-      el.innerHTML = `${remainingDeckSize}枚のデッキから${drawCount}枚ドローした結果：<br>0コストのカードが&nbsp;<strong>${drawnZero}枚</strong>&nbsp;引けました。<br>0コストが1枚以上引ける確率は<span class="probability">${(probability * 100).toFixed(2)}%</span>です。`;
+      el.innerHTML = `キープした${keep}枚以外をデッキ底に送り…<br>残り${remainingDeckSize}枚のデッキから${drawCount}枚ドローした結果、<br>0コストのカードが&nbsp;<span class="probability"><strong>${drawnZero}枚</strong></span>&nbsp;引けました。<br>0コストが1枚以上引ける確率は<span class="probability">${(probability * 100).toFixed(2)}%</span>です。`;
       el.classList.add('visible');
     }
 
