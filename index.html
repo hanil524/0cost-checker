@@ -22,7 +22,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -268,6 +268,7 @@
       const el = document.getElementById('mulliganResult');
       el.innerHTML = `キープした${keep}枚以外をデッキ底に送り…<br>残り${remainingDeckSize}枚のデッキから${drawCount}枚ドローした結果、<br>0コストのカードが&nbsp;<span class="probability"><strong>${drawnZero}枚</strong></span>&nbsp;引けました。<br>0コストが1枚以上引ける確率は<span class="probability">${(probability * 100).toFixed(2)}%</span>です。`;
       el.classList.add('visible');
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     document.getElementById('deckSize').addEventListener('blur', function () {

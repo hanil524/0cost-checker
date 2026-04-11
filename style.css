@@ -1,8 +1,6 @@
 /* ========================================
-   零探しチェッカー - 和風ホラーテーマ
+   零探しチェッカー
    ======================================== */
-
-/* --- Google Fonts読み込み用（HTMLのlinkで読み込み） --- */
 
 /* --- リセット & ベース --- */
 *, *::before, *::after {
@@ -17,16 +15,13 @@ html, body {
 }
 
 body {
-  font-family: "Noto Serif JP", "Yu Mincho", "游明朝", serif;
-  background-color: #0a0a0f;
-  background-image:
-    radial-gradient(ellipse at 20% 50%, rgba(80, 0, 0, 0.15) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 20%, rgba(60, 0, 40, 0.1) 0%, transparent 50%);
-  color: #e8ddd0;
+  font-family: "Noto Sans JP", "Yu Gothic", "游ゴシック", sans-serif;
+  background-color: #f5f5f5;
+  color: #222222;
   min-height: 100dvh;
   overflow-x: hidden;
   padding: 0 16px 24px 16px;
-  padding-top: 64px; /* ヘッダー分 */
+  padding-top: 64px;
 }
 
 /* --- ヘッダー --- */
@@ -36,9 +31,8 @@ body {
   left: 0;
   width: 100%;
   height: 56px;
-  background: linear-gradient(180deg, #1a0a0a 0%, #12080e 100%);
-  border-bottom: 1px solid rgba(180, 60, 60, 0.4);
-  box-shadow: 0 2px 16px rgba(120, 0, 0, 0.3);
+  background: #1a1a1a;
+  border-bottom: 1px solid #333333;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,8 +43,7 @@ body {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 0.15em;
-  color: #e8ddd0;
-  text-shadow: 0 0 12px rgba(200, 60, 60, 0.5);
+  color: #ffffff;
 }
 
 /* --- ハンバーガーメニュー --- */
@@ -62,7 +55,7 @@ body {
   width: 40px;
   height: 40px;
   background: none;
-  border: 1px solid rgba(180, 60, 60, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 6px;
   cursor: pointer;
   display: flex;
@@ -76,14 +69,14 @@ body {
 
 .hamburger-btn:hover,
 .hamburger-btn:active {
-  background: rgba(180, 60, 60, 0.15);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .hamburger-btn span {
   display: block;
   width: 20px;
   height: 2px;
-  background: #c9564a;
+  background: #cccccc;
   border-radius: 1px;
   transition: transform 0.3s, opacity 0.3s;
 }
@@ -107,7 +100,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 1050;
   opacity: 0;
   pointer-events: none;
@@ -125,8 +118,8 @@ body {
   left: -280px;
   width: 280px;
   height: 100%;
-  background: linear-gradient(180deg, #16090e 0%, #0e0610 100%);
-  border-right: 1px solid rgba(180, 60, 60, 0.3);
+  background: #1a1a1a;
+  border-right: 1px solid #333333;
   z-index: 1060;
   transition: left 0.3s ease;
   padding: 72px 0 24px 0;
@@ -142,13 +135,13 @@ body {
 }
 
 .menu-list li {
-  border-bottom: 1px solid rgba(180, 60, 60, 0.1);
+  border-bottom: 1px solid #2a2a2a;
 }
 
 .menu-list a {
   display: block;
   padding: 16px 24px;
-  color: #d4c4b0;
+  color: #bbbbbb;
   text-decoration: none;
   font-size: 15px;
   letter-spacing: 0.05em;
@@ -157,8 +150,8 @@ body {
 
 .menu-list a:hover,
 .menu-list a:active {
-  background: rgba(180, 60, 60, 0.12);
-  color: #f0d0c0;
+  background: #2a2a2a;
+  color: #ffffff;
 }
 
 /* --- メインコンテナ --- */
@@ -169,14 +162,12 @@ body {
 
 /* --- カード風セクション --- */
 .card-section {
-  background: linear-gradient(145deg, rgba(30, 15, 20, 0.9) 0%, rgba(20, 10, 15, 0.95) 100%);
-  border: 1px solid rgba(180, 60, 60, 0.25);
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
   border-radius: 12px;
   padding: 20px 16px;
   margin-bottom: 16px;
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .section-title {
@@ -185,8 +176,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.1em;
   margin-bottom: 16px;
-  color: #d4a0a0;
-  text-shadow: 0 0 8px rgba(200, 60, 60, 0.3);
+  color: #222222;
   position: relative;
   padding-bottom: 12px;
 }
@@ -197,9 +187,9 @@ body {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
+  width: 40px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(180, 60, 60, 0.5), transparent);
+  background: #cccccc;
 }
 
 /* --- 入力グループ --- */
@@ -211,7 +201,6 @@ body {
   flex-wrap: wrap;
 }
 
-/* 一行固定レイアウト */
 .input-group.input-row {
   flex-wrap: nowrap;
   overflow: visible;
@@ -221,19 +210,17 @@ body {
 .input-group label {
   flex: 0 0 auto;
   font-size: 14px;
-  color: #c0b0a0;
+  color: #555555;
   white-space: nowrap;
-  min-width: 0; /* nowrap時に縮まれるよう */
+  min-width: 0;
 }
 
-/* 一行固定時：ラベル幅を統一して縦に揃える */
 .input-row label {
   font-size: 13px;
   width: 6.5em;
   flex: 0 0 6.5em;
 }
 
-/* 2行ラベル（中央揃え） */
 .label-break {
   text-align: center;
   line-height: 1.4;
@@ -251,9 +238,9 @@ body {
 .stepper-btn {
   width: 40px;
   height: 40px;
-  background: rgba(180, 60, 60, 0.15);
-  border: 1px solid rgba(180, 60, 60, 0.35);
-  color: #e0a0a0;
+  background: #f0f0f0;
+  border: 1px solid #d0d0d0;
+  color: #333333;
   font-size: 22px;
   font-weight: 700;
   cursor: pointer;
@@ -278,11 +265,11 @@ body {
 }
 
 .stepper-btn:hover {
-  background: rgba(180, 60, 60, 0.3);
+  background: #e0e0e0;
 }
 
 .stepper-btn:active {
-  background: rgba(200, 60, 60, 0.45);
+  background: #cccccc;
   transform: scale(0.95);
 }
 
@@ -292,12 +279,12 @@ body {
   text-align: center;
   font-size: 18px;
   font-weight: 700;
-  font-family: "Noto Serif JP", serif;
-  background: rgba(10, 5, 8, 0.8);
-  border: 1px solid rgba(180, 60, 60, 0.35);
+  font-family: "Noto Sans JP", sans-serif;
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
   border-left: none;
   border-right: none;
-  color: #f0e0d0;
+  color: #222222;
   outline: none;
   -moz-appearance: textfield;
 }
@@ -309,8 +296,8 @@ body {
 }
 
 .stepper-input:focus {
-  background: rgba(20, 10, 14, 0.9);
-  border-color: rgba(200, 80, 80, 0.5);
+  background: #fafafa;
+  border-color: #aaaaaa;
 }
 
 /* --- クイック選択ボタン --- */
@@ -326,10 +313,10 @@ body {
   width: 36px;
   height: 36px;
   padding: 0;
-  background: rgba(60, 30, 40, 0.5);
-  border: 1px solid rgba(180, 60, 60, 0.25);
+  background: #f0f0f0;
+  border: 1px solid #d0d0d0;
   border-radius: 6px;
-  color: #d4b8a8;
+  color: #444444;
   font-size: 14px;
   font-weight: 600;
   font-family: inherit;
@@ -342,12 +329,12 @@ body {
 }
 
 .quick-btn:hover {
-  background: rgba(120, 40, 50, 0.4);
-  border-color: rgba(200, 80, 80, 0.4);
+  background: #e0e0e0;
+  border-color: #bbbbbb;
 }
 
 .quick-btn:active {
-  background: rgba(160, 50, 50, 0.5);
+  background: #cccccc;
   transform: scale(0.95);
 }
 
@@ -355,44 +342,42 @@ body {
 .action-btn {
   width: 100%;
   padding: 14px 16px;
-  background: linear-gradient(135deg, #8b2020 0%, #6b1515 100%);
-  border: 1px solid rgba(200, 80, 80, 0.4);
+  background: #2c2c2c;
+  border: none;
   border-radius: 10px;
-  color: #f5e8e0;
+  color: #ffffff;
   font-size: 16px;
   font-weight: 700;
   font-family: inherit;
   letter-spacing: 0.08em;
   cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  transition: background 0.2s, transform 0.1s;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
-  box-shadow: 0 4px 16px rgba(120, 20, 20, 0.3);
   margin-top: 4px;
 }
 
 .action-btn:hover {
-  background: linear-gradient(135deg, #a02828 0%, #7b1a1a 100%);
-  box-shadow: 0 4px 24px rgba(160, 30, 30, 0.4);
+  background: #444444;
 }
 
 .action-btn:active {
   transform: scale(0.98);
-  box-shadow: 0 2px 8px rgba(120, 20, 20, 0.3);
+  background: #1a1a1a;
 }
 
 /* --- 結果表示 --- */
 .result-area {
   margin-top: 14px;
   padding: 14px 16px;
-  background: rgba(10, 5, 8, 0.6);
-  border: 1px solid rgba(180, 60, 60, 0.15);
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
   border-radius: 8px;
   font-size: 14px;
   line-height: 1.8;
-  color: #e0d0c0;
+  color: #333333;
   min-height: 20px;
-  display: none; /* JSで表示を制御 */
+  display: none;
 }
 
 .result-area.visible {
@@ -400,7 +385,7 @@ body {
 }
 
 .result-area .probability {
-  color: #e8a080;
+  color: #111111;
   font-weight: 700;
 }
 
@@ -417,12 +402,12 @@ body {
   content: "";
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(180, 60, 60, 0.3), transparent);
+  background: #dddddd;
 }
 
 .section-divider span {
   font-size: 12px;
-  color: rgba(200, 120, 120, 0.6);
+  color: #999999;
   letter-spacing: 0.05em;
   white-space: nowrap;
 }
@@ -437,10 +422,10 @@ body {
 
 .mulligan-btn {
   height: 48px;
-  background: rgba(60, 30, 40, 0.5);
-  border: 1px solid rgba(180, 60, 60, 0.25);
+  background: #f0f0f0;
+  border: 1px solid #d0d0d0;
   border-radius: 8px;
-  color: #d4b8a8;
+  color: #333333;
   font-size: 18px;
   font-weight: 700;
   font-family: inherit;
@@ -451,19 +436,19 @@ body {
 }
 
 .mulligan-btn:hover {
-  background: rgba(120, 40, 50, 0.4);
-  border-color: rgba(200, 80, 80, 0.4);
+  background: #e0e0e0;
+  border-color: #bbbbbb;
 }
 
 .mulligan-btn:active {
-  background: rgba(160, 50, 50, 0.5);
+  background: #cccccc;
   transform: scale(0.95);
 }
 
 /* --- 説明テキスト --- */
 .explanation {
   font-size: 13px;
-  color: rgba(200, 170, 150, 0.6);
+  color: #888888;
   font-style: italic;
   margin-bottom: 8px;
   text-align: center;
@@ -474,7 +459,7 @@ body {
   text-align: center;
   font-size: 11px;
   letter-spacing: 0.6em;
-  color: rgba(180, 60, 60, 0.25);
+  color: #cccccc;
   margin: 4px 0 16px;
   user-select: none;
 }
@@ -483,7 +468,6 @@ body {
    レスポンシブ
    ======================================== */
 
-/* スマホ（小さい画面） */
 @media (max-width: 400px) {
   body {
     padding: 0 10px 16px 10px;
@@ -558,14 +542,12 @@ body {
   }
 }
 
-/* 中間サイズ（タブレット） */
 @media (min-width: 401px) and (max-width: 768px) {
   .mulligan-grid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-/* PC（大きい画面） */
 @media (min-width: 769px) {
   body {
     padding-top: 80px;
